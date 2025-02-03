@@ -1,22 +1,28 @@
-# my-coffe
-Nova versão do projeto desenvolvido para o curso de Desenvolvimento Fullstack – Módulo Intermediário, realizado pelo projeto Capacita Brasil.
-Projeto clonado do repositorio da Professora @FernandaNascimento26: https://github.com/FernandaNascimento26/cafe-do-amanha
+# ☕ My Coffee  
 
-Atualizações realizada: 
-- reorganização dos arquivos em pastas referente a cada .jsx e .css [ok]
-- mudanção do icone e texto na barra de navegação [ok]
-- padronização da font usada no texto [ok]
-- retirada da rolagem vertical [ok]
-- função criada para exibir valores referente a dinheiro
-  COmponentes -> 
-    Menu: - alteração do icone hamburguer por "x" simbolizando o close, quando os a lista do navbar estiver visivel [ok]
-    OrderPages:
-        - input Número da Mesa agora aceita apenas numeros
-        - Alert adicionado, para sinalizar quando o pedido for realizado.
-- em Menu, alteração da responsividade para ficar mais fluido, trocando a lista Tabs por um Select do React Bootstrap [ok]
+Este projeto é uma nova versão do sistema desenvolvido no curso **Desenvolvimento Fullstack – Módulo Intermediário**, oferecido pelo projeto **Capacita Brasil**.  
 
-Material de apoio para realizar as alterações: 
-doc - https://pt-br.legacy.reactjs.org/docs/getting-started.html
-doc - https://react-bootstrap.netlify.app/docs/forms/select/
-doc - https://getbootstrap.com.br/docs/4.1/components/input-group/#custom-select
+🔗 **Repositório original:** [@FernandaNascimento26](https://github.com/FernandaNascimento26/cafe-do-amanha)  
 
+## ✨ Melhorias Implementadas  
+
+### 📂 Organização do Código  
+- Reorganização dos arquivos, separando `.jsx` e `.css` em pastas específicas.  
+
+### 🎨 Ajustes Visuais e UI/UX  
+- Atualização do ícone e do texto na barra de navegação.  
+- Padronização da fonte utilizada no projeto.  
+- Remoção da rolagem vertical para uma experiência mais fluida.  
+- No **Menu**, substituição do ícone de hambúrguer pelo símbolo **"X"** quando a lista da navbar está visível.  
+- Ajuste na responsividade do **Menu**, substituindo a exibição por **Tabs** por um **Select** do React Bootstrap para melhor usabilidade.  
+
+### ⚙️ Funcionalidades  
+- Implementação de uma função para exibir valores monetários de forma padronizada.  
+- No **OrderPage**:
+  - O campo **"Número da Mesa"** agora aceita apenas números.  
+  - **Alerta** adicionado para notificar o usuário ao concluir um pedido.  
+
+## 📚 Referências e Materiais de Apoio  
+- [React Docs](https://pt-br.legacy.reactjs.org/docs/getting-started.html)  
+- [React Bootstrap - Select](https://react-bootstrap.netlify.app/docs/forms/select/)  
+- [Bootstrap 4 - Input Group](https://getbootstrap.com.br/docs/4.1/components/input-group/#custom-select)  
