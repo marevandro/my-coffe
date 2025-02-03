@@ -11,14 +11,12 @@
 }
 
 .about-section h1 {
-    font-family: 'Brush Script MT', cursive;
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: #8b5e3c; /* Cor do título */
 }
 
 .about-section p {
-    font-family: 'Georgia', serif;
     font-size: 1.2rem;
     line-height: 1.6;
     margin-bottom: 30px;
