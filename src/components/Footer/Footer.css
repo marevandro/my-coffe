@@ -1,12 +1,11 @@
-/* src/components/Footer.css */
 .footer {
     background-color: #8b5e3c;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    position: relative; /* Ajustado para evitar sobreposição */
+    position: relative; 
     width: 100%;
-    z-index: 2; /* Certifica que o footer fique acima de outros elementos */
+    z-index: 2; 
 }
 
 .footer .container {
@@ -16,11 +15,9 @@
 
 .footer p {
     margin: 5px 0;
-    font-family: 'Georgia', serif;
     font-size: 1rem;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .footer {
         padding: 15px 0;

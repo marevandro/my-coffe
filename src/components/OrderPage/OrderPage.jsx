@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Alert } from 'react-bootstrap';
+import { formatCurrency } from '../../util/util';
+import { menuItemsPedidos } from '../../util/dataMock';
 import './OrderPage.css';
 
 function OrderPage() {
+    const menuItems = menuItemsPedidos;
     const [order, setOrder] = useState({
         name: '',
         tableNumber: '',
@@ -13,45 +16,8 @@ function OrderPage() {
     const [currentCategory, setCurrentCategory] = useState('');
     const [currentItem, setCurrentItem] = useState('');
     const [currentQuantity, setCurrentQuantity] = useState(1);
+    const [openAlert, setOpenAlert] = useState(false);
 
-    const menuItems = {
-        cafes: {
-            'Águas de Março': 5.00,
-            'Sampa': 6.50,
-            'Garota de Ipanema': 7.00,
-            'Chega de Saudade': 6.00,
-            'Carinhoso': 8.00,
-            'Cappuccino Malandragem': 9.00,
-        },
-        sobremesas: {
-            'Doce de Maracujá': 8.00,
-            'Romeu e Julieta': 9.00,
-            'Chão de Giz': 10.00,
-            'Bolinho de Chuva': 6.50,
-            'Coração Bobo': 7.50,
-            'Pettit Gateau Ilegais': 12.00,
-        },
-        especiais: {
-            'Tarde em Itapoã': 12.00,
-            'O Canto da Cidade': 10.00,
-            'Fora da Ordem': 11.50,
-            'O Leãozinho': 9.50,
-        },
-        bebidasGeladas: {
-            'Sorvete de Baunilha': 7.00,
-            'Milk Shake de Chocolate': 10.00,
-            'Milk Shake de Morango': 10.00,
-            'Vitamina de Banana': 8.00,
-            'Vitamina de Morango': 8.50,
-        },
-        chas: {
-            'Chá de Hortelã': 4.50,
-            'Chá Verde': 5.00,
-            'Chá de Camomila': 4.50,
-            'Chá de Frutas Vermelhas': 6.00,
-            'Chá de Gengibre e Limão': 5.50,
-        }
-    };
 
     const calculateTotal = (items) => {
         return items.reduce((total, item) => {
@@ -92,98 +58,119 @@ function OrderPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`Pedido enviado com sucesso! Valor total: R$ ${calculateTotal(order.items).toFixed(2)}`);
+        setOpenAlert(true);
+    };
+
+    const closeAlert = () => {
         setOrder({
             name: '',
             tableNumber: '',
             items: []
         });
-    };
+        setOpenAlert(false)
+    }
 
     return (
-        <div className="order-container">
-            <h2>Faça seu pedido</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="name">Nome:</label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={order.name}
-                        onChange={(e) => setOrder({ ...order, name: e.target.value })}
-                        required
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="tableNumber">Número da Mesa:</label>
-                    <input
-                        type="text"
-                        id="tableNumber"
-                        name="tableNumber"
-                        value={order.tableNumber}
-                        onChange={(e) => setOrder({ ...order, tableNumber: e.target.value })}
-                        required
-                    />
-                </div>
-
-                <div className="menu-category-list">
-                    {Object.keys(menuItems).map((category) => (
-                        <Button key={category} onClick={() => handleCategoryClick(category)} className="category-button">
-                            {category.charAt(0).toUpperCase() + category.slice(1)}
-                        </Button>
-                    ))}
-                </div>
-
-                <h3>Total: R$ {calculateTotal(order.items).toFixed(2)}</h3>
-
-                <button type="submit">Enviar Pedido</button>
-            </form>
-
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Selecione o item e a quantidade</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+        <>
+            <div className="order-container">
+                <h2>Faça seu pedido</h2>
+                <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="itemSelect">Item:</label>
-                        <select
-                            id="itemSelect"
-                            name="itemSelect"
-                            value={currentItem}
-                            onChange={(e) => setCurrentItem(e.target.value)}
-                            className="form-control"
-                        >
-                            <option value="">Selecione um item</option>
-                            {Object.keys(menuItems[currentCategory] || {}).map((item) => (
-                                <option key={item} value={item}>{item} - R$ {menuItems[currentCategory][item].toFixed(2)}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="quantity">Quantidade:</label>
+                        <label htmlFor="name">Nome:</label>
                         <input
-                            type="number"
-                            id="quantity"
-                            name="quantity"
-                            value={currentQuantity}
-                            onChange={(e) => setCurrentQuantity(parseInt(e.target.value))}
-                            min="1"
-                            className="form-control"
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={order.name}
+                            onChange={(e) => setOrder({ ...order, name: e.target.value })}
+                            required
                         />
                     </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowModal(false)}>
-                        Cancelar
+
+                    <div className="form-group">
+                        <label htmlFor="tableNumber">Número da Mesa:</label>
+                        <input
+                            type="number"
+                            id="tableNumber"
+                            name="tableNumber"
+                            value={order.tableNumber}
+                            onChange={(e) => setOrder({ ...order, tableNumber: e.target.value })}
+                            required
+                        />
+                    </div>
+
+                    <div className="menu-category-list">
+                        {Object.keys(menuItems).map((category) => (
+                            <Button key={category} onClick={() => handleCategoryClick(category)} className="category-button">
+                                {category.charAt(0).toUpperCase() + category.slice(1)}
+                            </Button>
+                        ))}
+                    </div>
+
+                    <h3>Total: {formatCurrency(calculateTotal(order.items))}</h3>
+
+                    <button type="submit">Enviar Pedido</button>
+                </form>
+
+                <Modal show={showModal} onHide={() => setShowModal(false)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Selecione o item e a quantidade</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <div className="form-group">
+                            <label htmlFor="itemSelect">Item:</label>
+                            <select
+                                id="itemSelect"
+                                name="itemSelect"
+                                value={currentItem}
+                                onChange={(e) => setCurrentItem(e.target.value)}
+                                className="form-control"
+                            >
+                                <option value="">Selecione um item</option>
+                                {Object.keys(menuItems[currentCategory] || {}).map((item) => (
+                                    <option key={item} value={item}>{item} - {formatCurrency(menuItems[currentCategory][item])}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="quantity">Quantidade:</label>
+                            <input
+                                type="number"
+                                id="quantity"
+                                name="quantity"
+                                value={currentQuantity}
+                                onChange={(e) => setCurrentQuantity(parseInt(e.target.value))}
+                                min="1"
+                                className="form-control"
+                            />
+                        </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={() => setShowModal(false)}>
+                            Cancelar
+                        </Button>
+                        <Button variant="primary" onClick={handleAddItem}>
+                            Adicionar ao Pedido
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+
+            </div>
+            <Alert show={openAlert} variant="success" className='order-alert' style={{ position: 'fixed' }}>
+                <Alert.Heading>Pedido realizado com sucesso!</Alert.Heading>
+                <span>Pedido enviado com sucesso! </span>
+                <p>
+                    {`Valor total: R$ ${formatCurrency(calculateTotal(order.items))}`}
+                </p>
+                <hr />
+                <div className="d-flex justify-content-end">
+                    <Button onClick={closeAlert} variant="outline-success">
+                        OK
                     </Button>
-                    <Button variant="primary" onClick={handleAddItem}>
-                        Adicionar ao Pedido
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
+                </div>
+            </Alert>
+        </>
     );
 }
 

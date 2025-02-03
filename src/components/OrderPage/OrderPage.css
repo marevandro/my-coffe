@@ -1,14 +1,13 @@
-/* src/components/OrderPage.css */
 
 .order-container {
-    flex: 1; /* Permite que o container se expanda para preencher a área disponível */
+    flex: 1; 
     max-width: 600px;
     margin: 0 auto;
     background-color: #f5f5f5;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Um pequeno espaçamento antes do footer */
+    margin-bottom: 20px; 
 }
 
 .order-container h2 {
@@ -45,8 +44,8 @@
 .category-button {
     width: 48%;
     margin-bottom: 10px;
-    background-color: #8B4513 !important; /* Marrom chocolate */
-    color: #ffffff; /* Fonte clara */
+    background-color: #8B4513 !important; 
+    color: #ffffff; 
     border: none;
     border-radius: 5px;
     padding: 10px;
@@ -56,7 +55,7 @@
 }
 
 .category-button:hover {
-    background-color: #A0522D; /* Marrom mais claro no hover */
+    background-color: #A0522D; 
 }
 
 .order-container h3 {
@@ -70,7 +69,7 @@
 button[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #8B4513; /* Marrom chocolate */
+    background-color: #8B4513; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -82,28 +81,38 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #A0522D; /* Marrom mais claro no hover */
+    background-color: #A0522D;
 }
 
-/* Estilo para os botões no modal */
+
 .modal-footer .btn-primary {
-    background-color: #8B4513; /* Marrom chocolate */
-    border-color: #8B4513; /* Marrom chocolate */
-    color: #ffffff; /* Fonte clara */
+    background-color: #8B4513; 
+    border-color: #8B4513; 
+    color: #ffffff; 
 }
 
 .modal-footer .btn-primary:hover {
-    background-color: #A0522D; /* Marrom mais claro no hover */
-    border-color: #A0522D; /* Marrom mais claro no hover */
+    background-color: #A0522D; 
+    border-color: #A0522D; 
 }
 
 footer {
-    background-color: #8B4513; /* Cor de fundo do footer */
+    /* background-color: #8B4513;  */
     color: #ffffff;
     text-align: center;
     padding: 10px 0;
     width: 100%;
-    margin-top: auto; /* Mantém o footer no final da página */
+    margin-top: auto; 
     position: relative;
     bottom: 0;
+}
+
+
+.order-alert {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 90%;
+    max-width: 500px;
 }
